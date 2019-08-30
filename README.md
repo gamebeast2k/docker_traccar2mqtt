@@ -1,6 +1,8 @@
 # What is Traccar2mqtt
 
-![Build Status](https://img.shields.io/github/languages/code-size/gamebeast2k/docker_traccar2mqtt)
+![Build Status](https://img.shields.io/github/languages/code-size/gamebeast2k/docker_traccar2mqtt?style=for-the-badge)
+![OpenIssue](https://img.shields.io/github/issues/gamebeast2k/docker_traccar2mqtt?style=for-the-badge)
+![dockerbuild](https://img.shields.io/docker/cloud/automated/gamebeast/traccar2mqtt?style=for-the-badge)
 
 Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Programms. In my case Io.Broker
 
@@ -31,8 +33,15 @@ $ docker run - 44110:80 -d --env-file ./var.env gamebeast/traccar2mqtt
 $ curl https://raw.githubusercontent.com/gamebeast2k/docker_traccar2mqtt/master/docker-compose.yml --output docker-compose.yml
 $ docker-compose up
 ```
-
-
+### Setup Traccar
+On your Traccar Setup edit **conf/traccar.xml** and add folled
+``` xml
+<!-- position forwarding -->
+<entry key='forward.enable'>true</entry>
+<entry key='forward.json'>true</entry>
+<entry key='forward.url'>http://traccar2mqtt_ip:80/forward</entry>
+```
+**And restart Traccar Instance**
 ### environment vars
 
 | variable | default | Comment
@@ -43,6 +52,10 @@ $ docker-compose up
 | ${mqtt_password} | password | your mqtt password|
 | ${mqtt_host} | mqtt://1.2.3.4 | your mqtt ipaddr/dns-name|
 
+### currently Limits
+
+- no mqtt_topic_change (/traccar atm.)
+- only forward no events
 
 
    [express]: <https://expressjs.com/>

@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mqtt = require('mqtt')
 // HTTP Options
-const PORT = process.env.PORT;
+const PORT = 80;
 const HOST = process.env.HOST_IP;
 const MQTT_HOST = process.env.mqtt_host
 // MQTT Options
