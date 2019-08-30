@@ -5,13 +5,7 @@ services:
     image: docker_traccar2mqtt
     build: .
     container_name: traccar2mqtt
-    environment:
-      - PORT: 80                        #nodejs Port
-      - HOST_IP: 0.0.0.0                #nodejs IP
-      - clientid: "traccar2mqtt"        #mqtt clientID (must be uniqe)
-      - mqtt_username: "username"       #mqtt username
-      - mqtt_password: "password"       #mqtt password
-      - mqtt_host: "mqtt://1.2.3.4"     #mqtt ipaddr/dns-name
-      - NODE_ENV: production            #mqtt no need to change
+    env_file:
+      - var.env
     ports:
       - 80:80
