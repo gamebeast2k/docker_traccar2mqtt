@@ -1,0 +1,15 @@
+{
+  "name": "Traccar2mqtt",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Gamebeast <p.r@gamebeast.de>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.1",
+    "mqtt": "^3.0.0"
+  }
+}

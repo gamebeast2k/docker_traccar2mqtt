@@ -1,0 +1,4 @@
+src/node_modules/
+docker-compose-interna.yml
+commands.txt
+traccar_forward_sample.json
