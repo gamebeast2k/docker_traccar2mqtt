@@ -45,7 +45,7 @@ function send2mqtt(json){
   })
   if (mqtt_client.connected == true){
     let cache = {};
-    if(typeof json.device.name                      != "undefined"){ cache["name"]         = json.device.name; }
+    if(typeof json.device.name                      != "undefined"){ cache["name"]         = json.device.name.replace(" ","_"); }
     if(typeof json.device.status                    != "undefined"){ cache["status"]       = json.device.status; }
     if(typeof json.device.lastUpdate                != "undefined"){ cache["lastUpdate"]   = json.device.lastUpdate; }
     

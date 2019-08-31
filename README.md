@@ -9,7 +9,6 @@ Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Program
 ### Changelog
 #### 0.1
 - (emprovment) less error prone if vars no exsist on traccar
-- (fixed) POST Url from / to /forward
 
 ### currently Limits
 
