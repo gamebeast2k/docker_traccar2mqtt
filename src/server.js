@@ -13,7 +13,7 @@ var options={
   username:""+process.env.mqtt_username,
   password:""+process.env.mqtt_password,
   clean:false,
-  debug:true};
+  debug:false};
 
 var mqtt_client = mqtt.connect(MQTT_HOST,options);
 // App
@@ -21,16 +21,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/forward', (req, res) => {
-  console.log("post incoming");
-  res.send('not supported\n');
+app.get('/', (req, res) => {
+  res.send('get not supported\n');
 });
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
 
 // working on POST DATA from traccar
-app.post('/', function(request, response){
+app.post('/forward', function(request, response){
   console.log("post incoming");
   send2mqtt(request.body);                  
   response.send("");
@@ -46,19 +45,19 @@ function send2mqtt(json){
   })
   if (mqtt_client.connected == true){
     let cache = {};
-    cache["name"]         = json.device.name;
-    cache["status"]       = json.device.status;
-    cache["lastUpdate"]   = json.device.lastUpdate;
+    if(typeof json.device.name                      != "undefined"){ cache["name"]         = json.device.name; }
+    if(typeof json.device.status                    != "undefined"){ cache["status"]       = json.device.status; }
+    if(typeof json.device.lastUpdate                != "undefined"){ cache["lastUpdate"]   = json.device.lastUpdate; }
     
-    cache["lat"]          = json.position.latitude;
-    cache["lon"]          = json.position.longitude;
-    cache["altitude"]     = json.position.altitude;
-    cache["course"]       = json.position.course;
-    cache["speed"]        = json.position.speed;
-    cache["accuracy"]     = json.position.accuracy;
-    cache["network"]      = json.position.network;
-    cache["deviceTime"]   = json.position.deviceTime;
-    cache["batteryLevel"] = json.position.attributes.batteryLevel;
+    if(typeof json.position.latitude                != "undefined"){ cache["lat"]          = json.position.latitude; }
+    if(typeof json.position.longitude               != "undefined"){ cache["lon"]          = json.position.longitude; }
+    if(typeof json.position.altitude                != "undefined"){ cache["altitude"]     = json.position.altitude; }
+    if(typeof json.position.course                  != "undefined"){ cache["course"]       = json.position.course; }
+    if(typeof json.position.speed                   != "undefined"){ cache["speed"]        = json.position.speed; }
+    if(typeof json.position.accuracy                != "undefined"){ cache["accuracy"]     = json.position.accuracy; }
+    if(typeof json.position.network                 != "undefined"){ cache["network"]      = json.position.network; }
+    if(typeof json.position.deviceTime              != "undefined"){ cache["deviceTime"]   = json.position.deviceTime; }
+    if(typeof json.position.attributes.batteryLevel != "undefined"){ cache["batteryLevel"] = json.position.attributes.batteryLevel; }
     for (var key in cache) {
       var value = ''+cache[key]
       mqtt_client.publish('traccar/'+cache["name"]+"/"+key, value,{retain:true,qos:1});
