@@ -29,7 +29,7 @@ app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
 
 // working on POST DATA from traccar
-app.post('/forward', function(request, response){
+app.post('/', function(request, response){
   console.log("post incoming");
   send2mqtt(request.body);                  
   response.send("");

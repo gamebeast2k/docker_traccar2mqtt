@@ -11,7 +11,10 @@ Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Program
 - (emprovment) less error prone if vars no exsist on traccar
 - (fixed) POST Url from / to /forward
 
+### currently Limits
 
+- no mqtt_topic_change (/traccar atm.)
+- only forward no events
 ### Tech
 
 Traccar2mqtt uses a number of open source projects to work properly:
@@ -43,7 +46,7 @@ On your Traccar Setup edit **conf/traccar.xml** and add folled
 <!-- position forwarding -->
 <entry key='forward.enable'>true</entry>
 <entry key='forward.json'>true</entry>
-<entry key='forward.url'>http://traccar2mqtt_ip:80/forward</entry>
+<entry key='forward.url'>http://traccar2mqtt_ip:80/</entry>
 ```
 **And restart Traccar Instance**
 ### environment vars
@@ -55,11 +58,6 @@ On your Traccar Setup edit **conf/traccar.xml** and add folled
 | ${mqtt_username} | username | your mqtt username|
 | ${mqtt_password} | password | your mqtt password|
 | ${mqtt_host} | mqtt://1.2.3.4 | your mqtt ipaddr/dns-name|
-
-### currently Limits
-
-- no mqtt_topic_change (/traccar atm.)
-- only forward no events
 
 
    [express]: <https://expressjs.com/>
