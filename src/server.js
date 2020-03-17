@@ -13,9 +13,24 @@ var options={
   username:""+process.env.mqtt_username,
   password:""+process.env.mqtt_password,
   clean:false,
-  debug:false};
+  debug:false,
+  keepalive: 10,
+  reconnectPeriod: 6000};
 
 var mqtt_client = mqtt.connect(MQTT_HOST,options);
+
+mqtt_client.on("error",function(error){ 
+  console.log("mqtt: Can't connect"+error)
+});
+  mqtt_client.on("connect",function(){	
+    console.log("mqtt: connected  "+ mqtt_client.connected); 
+});
+  mqtt_client.on('disconnect', function() {
+    console.log('mqtt client disconnected');
+});
+  mqtt_client.on('close', function(err) {
+    console.log('mqtt client closed');
+});
 // App
 const app = express();
 app.use(bodyParser.json());
@@ -31,22 +46,19 @@ console.log(`Running on http://${HOST}:${PORT}`);
 // working on POST DATA from traccar
 app.post('/', function(request, response){
   console.log("post incoming");
+  //console.log(request.body); // PRINT json data from Traccar (carefully with privacy!)
   send2mqtt(request.body);                  
   response.send("");
 });
 
 //  setup and send to mqtt broker
 function send2mqtt(json){
-  mqtt_client.on("error",function(error){ 
-    console.log("mqtt: Can't connect"+error)
-  });
-  mqtt_client.on("connect",function(){	
-    console.log("mqtt: connected  "+ mqtt_client.connected); 
-  })
+
   if (mqtt_client.connected == true){
     let cache = {};
     if(typeof json.device.name                      != "undefined"){ cache["name"]         = json.device.name.replace(" ","_"); }
     if(typeof json.device.status                    != "undefined"){ cache["status"]       = json.device.status; }
+    if(typeof json.device.geofenceIds               != "undefined"){ cache["geofenceIds"]  = json.device.geofenceIds.toString(); }
     if(typeof json.device.lastUpdate                != "undefined"){ cache["lastUpdate"]   = json.device.lastUpdate; }
     
     if(typeof json.position.latitude                != "undefined"){ cache["lat"]          = json.position.latitude; }
