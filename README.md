@@ -9,6 +9,13 @@ Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Program
 ### Changelog
 #### 0.1
 - (emprovment) less error prone if vars no exsist on traccar
+#### 0.2
+- (emprovment) better mqtt connect handle
+- (added) new variable geofanceID
+- (added) more console output for debug
+
+#### 0.3
+- (added) new variable (Model, uniqueid, positionid, address, Battery, distance, totaldistance, motion) special thanks to dossidr
 
 ### currently Limits
 

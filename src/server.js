@@ -56,20 +56,27 @@ function send2mqtt(json){
 
   if (mqtt_client.connected == true){
     let cache = {};
-    if(typeof json.device.name                      != "undefined"){ cache["name"]         = json.device.name.replace(" ","_"); }
-    if(typeof json.device.status                    != "undefined"){ cache["status"]       = json.device.status; }
-    if(typeof json.device.geofenceIds               != "undefined"){ cache["geofenceIds"]  = json.device.geofenceIds.toString(); }
-    if(typeof json.device.lastUpdate                != "undefined"){ cache["lastUpdate"]   = json.device.lastUpdate; }
-    
-    if(typeof json.position.latitude                != "undefined"){ cache["lat"]          = json.position.latitude; }
-    if(typeof json.position.longitude               != "undefined"){ cache["lon"]          = json.position.longitude; }
-    if(typeof json.position.altitude                != "undefined"){ cache["altitude"]     = json.position.altitude; }
-    if(typeof json.position.course                  != "undefined"){ cache["course"]       = json.position.course; }
-    if(typeof json.position.speed                   != "undefined"){ cache["speed"]        = json.position.speed; }
-    if(typeof json.position.accuracy                != "undefined"){ cache["accuracy"]     = json.position.accuracy; }
-    if(typeof json.position.network                 != "undefined"){ cache["network"]      = json.position.network; }
-    if(typeof json.position.deviceTime              != "undefined"){ cache["deviceTime"]   = json.position.deviceTime; }
-    if(typeof json.position.attributes.batteryLevel != "undefined"){ cache["batteryLevel"] = json.position.attributes.batteryLevel; }
+    if(typeof json.device.name                        != "undefined"){ cache["name"]          = json.device.name.replace(" ","_"); }
+    if(typeof json.device.status                      != "undefined"){ cache["status"]        = json.device.status; }
+    if(typeof json.device.geofenceIds                 != "undefined"){ cache["geofenceIds"]   = json.device.geofenceIds.toString(); }
+    if(typeof json.device.lastUpdate                  != "undefined"){ cache["lastUpdate"]    = json.device.lastUpdate; }
+    if(typeof json.device.model                       != "undefined"){ cache["model"]         = json.device.model; } 
+    if(typeof json.device.uniqueid                    != "undefined"){ cache["uniqueid"]      = json.device.uniqueid; } 
+    if(typeof json.device.positionid                  != "undefined"){ cache["positionid"]    = json.device.positionid; } 
+    if(typeof json.position.latitude                  != "undefined"){ cache["lat"]           = json.position.latitude; }
+    if(typeof json.position.longitude                 != "undefined"){ cache["lon"]           = json.position.longitude; }
+    if(typeof json.position.altitude                  != "undefined"){ cache["altitude"]      = json.position.altitude; }
+    if(typeof json.position.course                    != "undefined"){ cache["course"]        = json.position.course; }
+    if(typeof json.position.speed                     != "undefined"){ cache["speed"]         = json.position.speed; }
+    if(typeof json.position.accuracy                  != "undefined"){ cache["accuracy"]      = json.position.accuracy; }
+    if(typeof json.position.network                   != "undefined"){ cache["network"]       = json.position.network; }
+    if(typeof json.position.deviceTime                != "undefined"){ cache["deviceTime"]    = json.position.deviceTime; }
+    if(typeof json.position.address                   != "undefined"){ cache["address"]       = json.position.address; } 
+    if(typeof json.position.attributes.BATTERY        != "undefined"){ cache["BATTERY"]       = json.position.attributes.BATTERY; } 
+    if(typeof json.position.attributes.distance       != "undefined"){ cache["distance"]      = json.position.attributes.distance; } 
+    if(typeof json.position.attributes.totalDistance  != "undefined"){ cache["totalDistance"] = json.position.attributes.totalDistance; } 
+    if(typeof json.position.attributes.motion         != "undefined"){ cache["motion"]        = json.position.attributes.motion; }
+    if(typeof json.position.attributes.batteryLevel   != "undefined"){ cache["batteryLevel"]  = json.position.attributes.batteryLevel; }
     for (var key in cache) {
       var value = ''+cache[key]
       mqtt_client.publish('traccar/'+cache["name"]+"/"+key, value,{retain:true,qos:1});
