@@ -3,7 +3,6 @@ version: '2.1'
 services:
   docker_traccar2mqtt:
     image: gamebeast/traccar2mqtt
-    build: .
     container_name: traccar2mqtt
     env_file:
       - var.env
