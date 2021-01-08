@@ -8,8 +8,10 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.16.1",
-    "mqtt": "^3.0.0"
+    "body-parser": "1.x",
+    "express": "4.x",
+    "mqtt": "4.x",
+    "bufferutil": "4.0.1",
+    "utf-8-validate": "5.0.3"
   }
 }
