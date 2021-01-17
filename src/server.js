@@ -9,14 +9,16 @@ const HOST = process.env.HOST_IP;
 const MQTT_HOST = process.env.mqtt_host
 // MQTT Options
 var options = {
+
   clientId: "" + process.env.clientid,
   username: "" + process.env.mqtt_username,
   password: "" + process.env.mqtt_password,
   clean: false,
   debug: false,
-  reconnectPeriod: 6000
+  reconnectPeriod: 1 * 1000,
 };
 
+console.log("mqtt: connecting  " + MQTT_HOST);
 var mqtt_client = mqtt.connect(MQTT_HOST, options);
 
 mqtt_client.on("error", function (error) {
@@ -28,9 +30,10 @@ mqtt_client.on("connect", function () {
 mqtt_client.on('disconnect', function () {
   console.log('mqtt client disconnected');
 });
-mqtt_client.on('close', function (err) {
-  console.log('mqtt client closed :' + err);
+mqtt_client.on('close', function () {
+  console.log('mqtt client closed');
 });
+
 // App
 const app = express();
 app.use(bodyParser.json());
