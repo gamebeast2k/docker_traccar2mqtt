@@ -11,7 +11,7 @@
 
   
 
-Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Programms. In my case Io.Broker
+Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Programs. In my case Io.Broker
 
   
 
@@ -19,11 +19,11 @@ Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Program
 
 #### 0.1
 
-- (emprovment) less error prone if vars no exsist on traccar
+- (improvement) less error prone if vars no exists on traccar
 
 #### 0.2
 
-- (emprovment) better mqtt connect handle
+- (improvement) better mqtt connect handle
 
 - (added) new variable geofanceID
 
@@ -79,7 +79,7 @@ The build instructions are tracked on [GitHub](https://github.com/gamebeast2k/do
 curl https://raw.githubusercontent.com/gamebeast2k/docker_traccar2mqtt/master/var.env.example --output var.env
 docker run - 44110:80 -d --name traccar2mqtt --env-file ./var.env gamebeast/traccar2mqtt
 ```
-The Docker ist downloading images from DockerHub, starting and wating on port 44110 TCP for data from Traccar.
+The Docker is downloading images from DockerHub, starting and waiting on port 44110 TCP for data from Traccar.
 
   
 
@@ -90,10 +90,10 @@ curl https://raw.githubusercontent.com/gamebeast2k/docker_traccar2mqtt/master/va
 curl https://raw.githubusercontent.com/gamebeast2k/docker_traccar2mqtt/master/docker-compose.yml --output docker-compose.yml
 docker-compose up
 ```
-The the container is again downloading images from DockerHub und starting in foreground. Try -d to start in background.
+The the container is again downloading images from DockerHub and starting in foreground. Try -d to start in background.
 
 ## UPDATING
-The Update process is prety easy.
+The Update process is pretty easy.
 ```sh
 docker pull gamebeast/traccar2mqtt
 docker restart traccar2mqtt
@@ -103,7 +103,7 @@ Thats all what you need to update.
 
 ## Setup Traccar
 
-On your Traccar Setup edit **conf/traccar.xml** and add folled
+On your Traccar Setup edit **conf/traccar.xml** and add forward
 
 ``` xml
 
@@ -138,7 +138,7 @@ On your Traccar Setup edit **conf/traccar.xml** and add folled
 | ${mqtt_host} | mqtt://1.2.3.4 | your mqtt ipaddr or dns-name|
 
   
-  
+
 
 [express]: <https://expressjs.com/>
 
