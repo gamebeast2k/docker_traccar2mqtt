@@ -35,6 +35,10 @@ Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Program
 
 - (added) new variable (Model, uniqueid, positionid, address, Battery, distance, totaldistance, motion) special thanks to dossidr
 
+#### 0.4
+
+- (added) New env variable added: debug (true,false)
+
   
 
 ### currently Limits
