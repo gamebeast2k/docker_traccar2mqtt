@@ -22,7 +22,11 @@ Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Program
 - (added) New env variable added: debug (true,false)
 - (added) Data example **forward_data/forward.json**  and **forward_data/event_forward.json**
 - (added) Event Handler
-  - new mqtt subtopic traccar/devicename/event
+  - new mqtt subtopic traccar/*/event
+- (added) json topic to get the complete posted data
+  - /traccar/*/event/json
+  - /traccar/*/device/json
+  - /traccar/*/position/json
 
 - (fixed) device/state allways "online" fixed.
 - (fixed) some mqtt errors.
