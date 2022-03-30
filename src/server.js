@@ -59,8 +59,20 @@ app.post('/', function (request, response) {
 function send2mqtt(json) {
 
   if (mqtt_client.connected == true) {  // mqtt connected?
-    if (typeof json.position.protocol != "undefined") { // is it a device?
-      let cache = {};
+    let cache = {};
+    if (typeof json.event != "undefined") {
+      console.log("Processing->event")
+      cache["event/json"] = JSON.stringify(json.event);
+      if (typeof json.event.eventTime != "undefined") { cache["event/eventTime"] = json.event.eventTime; }
+      if (typeof json.event.type != "undefined") { cache["event/type"] = json.event.type; }
+      if (typeof json.event.positionId != "undefined") { cache["event/positionId"] = json.event.positionId; }
+      if (typeof json.event.geofenceId != "undefined") { cache["event/geofenceId"] = json.event.geofenceId; }
+      if (typeof json.event.maintenanceId != "undefined") { cache["event/maintenanceId"] = json.event.maintenanceId; }
+     }
+
+    if (typeof json.device != "undefined") {
+      console.log("Processing->device")
+      cache["device/json"] = JSON.stringify(json.device);
       if (typeof json.device.name != "undefined") { cache["name"] = json.device.name.replace(" ", "_"); }
       if (typeof json.device.status != "undefined") { cache["status"] = json.device.status; }
       if (typeof json.device.geofenceIds != "undefined") { cache["geofenceIds"] = json.device.geofenceIds.toString(); }
@@ -68,6 +80,11 @@ function send2mqtt(json) {
       if (typeof json.device.model != "undefined") { cache["model"] = json.device.model; }
       if (typeof json.device.uniqueid != "undefined") { cache["uniqueid"] = json.device.uniqueid; }
       if (typeof json.device.positionid != "undefined") { cache["positionid"] = json.device.positionid; }
+    }
+
+    if (typeof json.position != "undefined") {
+      console.log("Processing->position")
+      cache["position/json"] = JSON.stringify(json.position);
       if (typeof json.position.latitude != "undefined") { cache["lat"] = json.position.latitude; }
       if (typeof json.position.longitude != "undefined") { cache["lon"] = json.position.longitude; }
       if (typeof json.position.altitude != "undefined") { cache["altitude"] = json.position.altitude; }
@@ -82,10 +99,11 @@ function send2mqtt(json) {
       if (typeof json.position.attributes.totalDistance != "undefined") { cache["totalDistance"] = json.position.attributes.totalDistance; }
       if (typeof json.position.attributes.motion != "undefined") { cache["motion"] = json.position.attributes.motion; }
       if (typeof json.position.attributes.batteryLevel != "undefined") { cache["batteryLevel"] = json.position.attributes.batteryLevel; }
-      for (var key in cache) {
-        var value = '' + cache[key]
-        mqtt_client.publish('traccar/' + cache["name"] + "/" + key, value, { retain: true, qos: 1 });
-      };
     }
+
+    for (var key in cache) {
+      var value = '' + cache[key]
+      mqtt_client.publish('traccar/' + cache["name"] + "/" + key, value, { retain: true, qos: 1 });
+    };
   }
 };

@@ -17,9 +17,19 @@ Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Program
 
 ### Changelog
 
-#### 0.1
+#### 0.4
 
-- (improvement) less error prone if vars no exists on traccar
+- (added) New env variable added: debug (true,false)
+- (added) Data example **forward_data/forward.json**  and **forward_data/event_forward.json**
+- (added) Event Handler
+  - new mqtt subtopic traccar/devicename/event
+
+- (fixed) device/state allways "online" fixed.
+- (fixed) some mqtt errors.
+
+#### 0.3
+
+- (added) new variable (Model, uniqueid, positionid, address, Battery, distance, totaldistance, motion) special thanks to dossidr
 
 #### 0.2
 
@@ -29,25 +39,17 @@ Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Program
 
 - (added) more console output for debug
 
-  
+#### 0.1
 
-#### 0.3
-
-- (added) new variable (Model, uniqueid, positionid, address, Battery, distance, totaldistance, motion) special thanks to dossidr
-
-#### 0.4
-
-- (added) New env variable added: debug (true,false)
-
-  
+- (improvement) less error prone if vars no exists on traccar  
 
 ### currently Limits
 
   
 
-- no mqtt_topic_change (/traccar atm.)
+- [ ] no mqtt_topic_change (/traccar atm.)
 
-- only forward no events
+- [x] only forward, no events
 
 ### Tech
 
@@ -114,10 +116,13 @@ On your Traccar Setup edit **conf/traccar.xml** and add forward
 <!-- position forwarding -->
 
 <entry  key='forward.enable'>true</entry>
-
 <entry  key='forward.json'>true</entry>
-
 <entry  key='forward.url'>http://traccar2mqtt_ip:80/</entry>
+
+<!-- event forwarding -->
+
+	<entry key="event.forward.enable">true</entry>
+	<entry key='event.forward.url'>http://traccar2mqtt_ip:80/</entry>
 
 ```
 
