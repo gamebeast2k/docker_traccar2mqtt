@@ -65,8 +65,6 @@ Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Program
 
 - [ ] no mqtt_topic_change (/traccar atm.)
 
-- [x] only forward, no events
-
 ### Tech
 
   
