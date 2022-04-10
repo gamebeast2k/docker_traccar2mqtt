@@ -1,0 +1,37 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: push commit
+  image: appleboy/drone-git-push
+  settings:
+    branch: master
+    remote: git@github.com:gamebeast2k/docker_traccar2mqtt.git
+    author_name: "Gamebeast"
+    author_email: "p.r@gamebeast.de"
+    force: true
+    ssh_key:
+      from_secret: ssh_key
+  when:
+    branch:
+    - master
+    event:
+    - push
+    - tag
+
+- name: docker
+  image: plugins/docker
+  settings:
+    auto_tag: true
+
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: gamebeast/traccar2mqtt_test
+  when:
+    branch:
+    - master
+    event:
+    - push
