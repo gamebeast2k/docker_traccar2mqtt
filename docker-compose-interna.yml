@@ -1,0 +1,15 @@
+version: '2.1'
+services:
+  docker_traccar2mqtt:
+    build: .
+    container_name: traccar2mqtt
+    environment:
+      HOST_IP: "0.0.0.0"
+      clientid: "traccar2mqttds"
+      mqtt_username: "gamebeast"
+      mqtt_password: "n0eagxr"
+      mqtt_host: "mqtt://mqtt.gamebeast.de"
+      NODE_ENV: production
+      debug: "true"
+    ports:
+      - 80:80

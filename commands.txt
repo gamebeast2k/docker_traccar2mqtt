@@ -1,0 +1,9 @@
+build:	docker build -t traccar2mqtt
+run: 	docker run -p 80:80 --name t2mqtt traccar2mqtt && docker stop t2mqtt && docker container rm t2mqtt
+
+stop&delete: 	docker stop t2mqtt && docker container rm t2mqtt
+
+
+Debug Docker Run: 
+docker-compose -f "docker-compose-interna.yml" up --build --force-recreate
+json test: curl -X POST -H "Content-Type: application/json" -d @./forward_data/event_forward.json http://127.0.0.1
