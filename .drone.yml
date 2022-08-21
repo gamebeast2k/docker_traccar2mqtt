@@ -29,7 +29,7 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
-    repo: gamebeast/traccar2mqtt_test
+    repo: gamebeast/traccar2mqtt
   when:
     branch:
     - master
