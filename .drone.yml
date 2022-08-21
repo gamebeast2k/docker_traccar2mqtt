@@ -3,7 +3,7 @@ type: docker
 name: default
 
 steps:
-- name: push commit
+- name: push to github
   image: appleboy/drone-git-push
   settings:
     branch: master
