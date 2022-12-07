@@ -133,11 +133,7 @@ On your Traccar Setup edit **conf/traccar.xml** and add forward
 **And restart Traccar Instance**
 
 ### environment vars
-
   
-| variable | default | Comment |
-| ---- | ---- | ---- |
-| ${NODE_ENV] | production | no need to change |
 | variable     | default     | Comment     |
 | ---- | ---- | ---- |
 | ${NODE_ENV] | production | no need to change |
