@@ -135,19 +135,15 @@ On your Traccar Setup edit **conf/traccar.xml** and add forward
 ### environment vars
 
   
-
-| variable | default | Comment
-
-| ------ | ------ | ------|
-
+| variable | default | Comment |
+| ---- | ---- | ---- |
 | ${NODE_ENV] | production | no need to change |
-
+| variable     | default     | Comment     |
+| ---- | ---- | ---- |
+| ${NODE_ENV] | production | no need to change |
 | ${clientid} | traccar2mqtt | your mqtt ClientID (must be unique)|
-
 | ${mqtt_username} | username | your mqtt username|
-
 | ${mqtt_password} | password | your mqtt password|
-
 | ${mqtt_host} | mqtt://1.2.3.4 | your mqtt ipaddr or dns-name|
 
   
