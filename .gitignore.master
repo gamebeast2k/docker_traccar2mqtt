@@ -1,3 +1,5 @@
 commands.txt
 docker-compose-interna.yml
 publish.bat
+
+src/package-lock.json
