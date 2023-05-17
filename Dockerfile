@@ -3,7 +3,7 @@ ENV NODE_ENV production
 
 WORKDIR /app
 COPY ["src/package.json", "src/package-lock.json*", "src/npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent
+RUN npm install
 COPY ./src .
 EXPOSE 80
 #CMD npm start
