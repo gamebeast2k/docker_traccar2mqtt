@@ -1,4 +1,11 @@
 
+
+## !!! Traccar now offers own internal support for MQTT since [Release 5.6](https://www.traccar.org/forums/topic/release-56-mqtt-support-for-event-forwarding/) !!!
+
+## I will continue to maintain this GIT and provide security updates or bug fixes when necessary.
+
+####thanks for the countless downloads!
+
 # What is Traccar2mqtt
 
   
@@ -13,9 +20,14 @@
 
 Traccar2mqtt is a small Server written in NodeJs to use Traccar in other Programs. In my case Io.Broker
 
-  
+
+
 
 ### Changelog
+
+#### 1.0
+
+- Big Jump to V1.0 the Version is very stable and no new issue reported or found
 
 #### 0.4
 
@@ -133,7 +145,7 @@ On your Traccar Setup edit **conf/traccar.xml** and add forward
 **And restart Traccar Instance**
 
 ### environment vars
-  
+
 | variable     | default     | Comment     |
 | ---- | ---- | ---- |
 | ${NODE_ENV] | production | no need to change |
